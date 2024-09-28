@@ -23,11 +23,11 @@ All projects have the same interface on the DE10-Lite board.
 
 # Explanation of board controls/features:   
 ### KEY0: 
-    Clock control: Press this button to cause a clock pulse. 
+   Clock control: Press this button to cause a clock pulse. 
 ### KEY1: 
-    Program counter reset. 
+   Program counter reset. 
 ### HEX(5..0):  
-    Shows reg_wr_data in hex (lower 24 bits) 
+   Shows reg_wr_data in hex (lower 24 bits) 
 
 # Explanation of project files: 
 pipeline_board.vhd -- pipeline MIPS processor for board \
