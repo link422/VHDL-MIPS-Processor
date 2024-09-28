@@ -1,8 +1,8 @@
 # Project Organization
-single_cycle_top = Single Cycle simulation \
-pipeline_top = Simple Pipelined simulation \
-single_cycle_board = Single Cycle board \
-pipeline_board = Simple Pipelined board \
+* single_cycle_top = Single Cycle simulation \
+* pipeline_top = Simple Pipelined simulation \
+* single_cycle_board = Single Cycle board \
+* pipeline_board = Simple Pipelined board \
 \
 All projects have the same interface on the DE10-Lite board. 
    
