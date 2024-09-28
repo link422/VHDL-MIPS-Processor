@@ -81,13 +81,11 @@ dataMem.qip -- same as instrucMem accept for no MIF file prelaoded
 
 # Demo Instructions   
 1.	Deploy the pipeline_board.vhd (already set as top level) from the project to the DE10-Lite board 
-   using the instructions in the projectREADME.txt file found in the project archive. 
-2.	After flashing, with all switches in the DOWN (OFF) position,    press KEY1 to reset the program counter. 
-3.	Repeatedly press KEY0 clock as many times as desired. Observe the reg_wr_data    values shown in hex on the 7-segment displays. Expected values are shown below.  
-Note: See projectREADME.txt  for further explanation of board controls and features. 
+   using the instructions at ADD REFRENCE TO SECTION ABOVE. 
+2.	After flashing, with all switches in the DOWN (OFF) position, press KEY1 to reset the program counter. 
+3.	Repeatedly press KEY0 clock as many times as desired. Observe the reg_wr_data values shown in hex on the 7-segment displays. Expected values are shown below. 
   
 # Expected Values  
-  
 Clock Cycle    reg_wr_data (hex)    notes 
 ----------------------------------------------------
 0       0x000000             <- board startup 
