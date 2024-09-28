@@ -6,22 +6,22 @@
 \
 All projects have the same interface on the DE10-Lite board. 
    
-# To Run ModelSim simulation:   
+# To Run ModelSim simulation   
 1.	Open fetch.qpf in Quartus 
-2.	In menu bar click: Processing -> Start Compilation 
-3.	After compilation, in menu bar click: Tools -> Run Simulation Tool -> Gate Level Simulation 
+2.	In menu bar click: Processing &rarr; Start Compilation 
+3.	After compilation, in menu bar click: Tools &rarr; Run Simulation Tool &rarr; Gate Level Simulation 
 4.	ModelSim will open, run the simulation, and display the waveform. 
   
-# To deploy to DE10-Lite board:   
+# To deploy to DE10-Lite board
 1.	Open fetch.qpf in Quartus 
-2.	In menu bar: Processing -> Start Compilation 
-3.	In menu bar: Tools -> Programmer 
+2.	In menu bar: Processing &rarr; Start Compilation 
+3.	In menu bar: Tools &rarr; Programmer 
 4.	Click "Hardware Setup" 
 5.	Select "USB Blaster" 
 6.	Click "Close" 
 7.	Click "Start" to begin programming 
 
-# Explanation of board controls/features:   
+# Explanation of board controls/features   
 ### KEY0:
   * Clock control: Press this button to cause a clock pulse. 
 ### KEY1: 
@@ -29,7 +29,7 @@ All projects have the same interface on the DE10-Lite board.
 ### HEX(5..0):  
   * Shows reg_wr_data in hex (lower 24 bits) 
 
-# Explanation of project files: 
+# Explanation of project files 
 pipeline_board.vhd -- pipeline MIPS processor for board \
 phase3SevSeg_tb.vhd -- simple testbench for phase3SevSeg \
 phase3SevSeg.vhd -- converts 4 bits to 8 bit hex representation for the 7 segments \
@@ -81,7 +81,7 @@ dataMem.qip -- same as instrucMem accept for no MIF file prelaoded
 
 # Demo Instructions   
 1.	Deploy the pipeline_board.vhd (already set as top level) from the project to the DE10-Lite board 
-   using the instructions at ADD REFRENCE TO SECTION ABOVE. 
+   using the instructions at the [deployment guide](#to-deploy-to-de10-lite-board). 
 2.	After flashing, with all switches in the DOWN (OFF) position, press KEY1 to reset the program counter. 
 3.	Repeatedly press KEY0 clock as many times as desired. Observe the reg_wr_data values shown in hex on the 7-segment displays. Expected values are shown below. 
   
