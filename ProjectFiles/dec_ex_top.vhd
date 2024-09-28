@@ -1,0 +1,85 @@
+library ieee; 
+use ieee.std_logic_1164.all;
+use work.multiplex_pack.all;
+
+entity dec_ex_top is
+port(
+	  clock : in std_logic;
+	  instruc : in std_logic_vector (31 downto 0 );
+	  regWrt: in std_logic;
+	  ALUSource : in std_logic;
+	  ALUOp : in std_logic_vector (3 downto 0);
+	  ALURes : out std_logic_vector (31 downto 0 );
+	  zeroCheck : out std_logic);
+end entity dec_ex_top;
+
+architecture behave of dec_ex_top is
+signal reg1 : std_logic_vector (4 downto 0);
+signal reg2 : std_logic_vector (4 downto 0);
+signal wrtIn : std_logic_vector (4 downto 0);
+signal SEIn : std_logic_vector (15 downto 0);
+signal SEOut: std_logic_vector (31 downto 0);
+signal RdData1 : std_logic_vector (31 downto 0);
+signal RdData2 : std_logic_vector (31 downto 0);
+signal wrtData : std_logic_vector (31 downto 0);
+signal MXOut : std_logic_vector (31 downto 0);
+
+
+component RW_Unit is
+port (ReadIn1 : in std_logic_vector (4 downto 0);
+		ReadIn2 : in std_logic_vector (4 downto 0);
+		WriteIn : in std_logic_vector (4 downto 0);
+		WriteData : in std_logic_vector (31 downto 0);
+		RegWrite : in std_logic;
+		clk : in std_logic;
+		readOut1 : out std_logic_vector (31 downto 0);
+		readOut2 : out std_logic_vector (31 downto 0));
+end component;
+
+component signExtend is
+port (in1 : in std_logic_vector (15 downto 0);
+		out1 : out std_logic_vector (31 downto 0));
+end component;
+
+
+component ALUMux is
+port (in1 : in std_logic_vector (31 downto 0);
+		in2 : in std_logic_vector (31 downto 0);
+		ALUSrc : in std_logic;
+		out1 : out std_logic_vector (31 downto 0));
+end component;
+
+component ALU is
+port (in1 : in std_logic_vector (31 downto 0);
+		in2 : in std_logic_vector (31 downto 0);
+		ALUCode : in std_logic_vector (3 downto 0);
+		zeroFlag : out std_logic;
+		ALUResult : out std_logic_vector (31 downto 0));
+end component;
+
+begin
+
+process(instruc)
+begin
+if(instruc(31 downto 26) = "000000") then
+
+	reg1 <= instruc(25 downto 21);
+	reg2 <= instruc(20 downto 16);
+	wrtIn<= instruc(15 downto 11);
+	SEIn <= instruc(15 downto 0);
+else
+	reg1 <= instruc(25 downto 21);
+	wrtIn <= instruc(20 downto 16);
+	SEIn <= instruc(15 downto 0);
+end if;
+end process;
+
+DUT1: RW_Unit port map (reg1, reg2, wrtIn, wrtData, regWrt, clock, RdData1, RdData2);
+DUT2: signExtend port map (SEIn, SEOut);
+DUT3: ALUMux port map (RdData2,SEOut,ALUSource,MXOut);
+DUT4: ALU port map (RdData1,MXOut,ALUOp,zeroCheck,wrtData);
+ALURes <= wrtData;
+
+
+
+end behave;

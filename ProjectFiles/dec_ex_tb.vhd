@@ -1,0 +1,166 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+use work.multiplex_pack.all;
+
+entity dec_ex_tb is
+end dec_ex_tb;
+
+architecture behavior of dec_ex_tb is
+signal clk_tb : std_logic := '0';
+signal instruc_tb : std_logic_vector (31 downto 0);
+signal regWrt_tb : std_logic;
+signal ALUSource_tb : std_logic;
+signal ALUOp_tb : std_logic_vector (3 downto 0);
+signal ALURes_tb : std_logic_vector (31 downto 0);
+signal zeroCheck_tb : std_logic;
+
+
+component dec_ex_top is
+port(
+	  clock : in std_logic;
+	  instruc : in std_logic_vector (31 downto 0 );
+	  regWrt: in std_logic;
+	  ALUSource : in std_logic;
+	  ALUOp : in std_logic_vector (3 downto 0);
+	  ALURes : out std_logic_vector (31 downto 0 );
+	  zeroCheck : out std_logic);
+end component;
+
+begin
+dut: dec_ex_top port map (clk_tb, instruc_tb, regWrt_tb, ALUSource_tb, ALUOp_tb, ALURes_tb, zeroCheck_tb);
+process
+begin
+regWrt_tb <= '1';
+ALUSource_tb <= '1';
+ALUOp_tb <= "0010"; 
+instruc_tb <= "00100000000010110000000000000100";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '1';
+ALUOp_tb <= "0010"; 
+instruc_tb <= "00100000000011000000000000000100";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '1';
+ALUOp_tb <= "0010"; 
+instruc_tb <= "00100000000100010000000000000100";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '1';
+ALUOp_tb <= "0010"; 
+instruc_tb <= "00100000000100100000000000000100";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '1';
+ALUOp_tb <= "0010"; 
+instruc_tb <= "00100000000010000000000000000001";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '1';
+ALUOp_tb <= "0010"; 
+instruc_tb <= "00100000000010010000000000000010";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '1';
+ALUOp_tb <= "0010"; 
+instruc_tb <= "00100000000011010000000000000011";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '1';
+ALUOp_tb <= "0010"; 
+instruc_tb <= "00100000000100000000000000000101";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '1';
+ALUOp_tb <= "0010"; 
+instruc_tb <= "00100000000100110000000000000110";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '1';
+ALUOp_tb <= "0010"; 
+instruc_tb <= "00100000000101000000000000000111";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '0';
+ALUOp_tb <= "0010"; 
+instruc_tb <= "00000001000010010101100000100000";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '0';
+ALUOp_tb <= "0110"; 
+instruc_tb <= "00000010000100010110000000100010";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '0';
+ALUOp_tb <= "0000"; 
+instruc_tb <= "00000001011011000110100000100100";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '0';
+ALUOp_tb <= "0111"; 
+instruc_tb <= "00000010011101000100000000100110";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '0';
+ALUOp_tb <= "1100"; 
+instruc_tb <= "00000001001010010100100000100111";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+regWrt_tb <= '1';
+ALUSource_tb <= '1';
+ALUOp_tb <= "0010"; 
+instruc_tb <= "00100010011100110000000000000100";
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+
+
+end process;
+
+end behavior;

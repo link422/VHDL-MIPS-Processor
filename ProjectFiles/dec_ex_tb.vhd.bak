@@ -1,0 +1,39 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+
+entity dec_ex_tb is
+end dec_ex_tb;
+
+architecture behavior of dec_ex_tb is
+signal clk_tb : std_logic := '1';
+signal instruc_tb : std_logic_vector (31 downto 0);
+signal regWrt_tb : std_logic;
+signal ALUSource_tb : std_logic;
+signal ALUOp_tb : std_logic_vector (3 downto 0);
+signal ALURes_tb : std_logic_vector (31 downto 0);
+signal zeroCheck_tb : std_logic;
+
+
+component dec_ex_top is
+port(
+	  clock : in std_logic;
+	  instruc : in std_logic_vector (31 downto 0 );
+	  regWrt: in std_logic;
+	  ALUSource : in std_logic;
+	  ALUOp : in std_logic_vector (3 downto 0);
+	  ALURes : out std_logic_vector (31 downto 0 );
+	  zeroCheck : out std_logic);
+end component;
+
+begin
+dut: dec_ex_top port map (clk_tb, instruc_tb, regWrt_tb, ALUSource_tb, ALUOp_tb, ALURes_tb, zeroCheck_tb);
+process
+begin
+wait for 50 ns;
+clk_tb <= not clk_tb;
+wait for 50 ns;
+clk_tb <= not clk_tb;
+end process;
+
+end behavior;

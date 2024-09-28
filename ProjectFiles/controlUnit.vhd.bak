@@ -1,0 +1,16 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity controlUnit is
+port( opcode : in std_logic_vector(5 downto 0);
+		regDst : out std_logic;
+		branch : out std_logic;
+		memRW : out std_logic);
+end controlUnit;
+
+architecture behave of controlUnit is
+begin
+
+C <= wEn and decOut;
+
+end behave;

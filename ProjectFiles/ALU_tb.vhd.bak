@@ -1,0 +1,32 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+
+entity ALU_tb is
+end ALU_tb;
+
+architecture behavior of ALU_tb is
+signal a : std_logic_vector (31 downto 0);
+signal b : std_logic_vector (31 downto 0);
+signal o : std_logic_vector (31 downto 0);
+
+
+component ALU is
+port (in1 : in std_logic_vector (31 downto 0);
+		in2 : in std_logic_vector (31 downto 0);
+		ALUCode : in std_logic_vector (3 downto 0);
+		zeroFlag : out std_logic;
+		ALUResult : out std_logic_vector (31 downto 0));
+end component;
+
+begin
+dut: ALU port map (a,o);
+process
+begin
+a <= "1000100010001000";	
+wait for 10 ns;
+a <= "0000101010001010";
+wait for 10 ns;
+end process;
+
+end behavior;

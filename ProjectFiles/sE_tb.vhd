@@ -1,0 +1,27 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+
+entity sE_tb is
+end sE_tb;
+
+architecture behavior of sE_tb is
+signal a : std_logic_vector (15 downto 0);
+signal o : std_logic_vector (31 downto 0);
+
+component signExtend is
+port(in1 : in std_logic_vector (15 downto 0);
+		out1 : out std_logic_vector (31 downto 0));
+end component;
+
+begin
+dut: signExtend port map (a,o);
+process
+begin
+a <= "1000100010001000";	
+wait for 10 ns;
+a <= "0000101010001010";
+wait for 10 ns;
+end process;
+
+end behavior;
